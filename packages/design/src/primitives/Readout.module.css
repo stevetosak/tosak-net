@@ -1,0 +1,27 @@
+.readout {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-md);
+  min-height: 44px;
+}
+
+.status {
+  font-size: var(--text-sm);
+  color: var(--color-ink-2);
+  max-width: 54ch;
+}
+
+.timer {
+  min-width: 4ch;
+  font-family: var(--font-readout);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-ink);
+  opacity: 0;
+  transition: opacity var(--dur-short) var(--ease-out);
+}
+
+.timer.running {
+  opacity: 1;
+}

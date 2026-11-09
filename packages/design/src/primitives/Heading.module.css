@@ -1,0 +1,29 @@
+/* The weight, tracking and leading of every heading come from base.css. */
+.display {
+  font-size: var(--text-display);
+  max-width: 14ch;
+}
+
+.section {
+  font-size: var(--text-section);
+  max-width: 17ch;
+}
+
+.title {
+  font-size: var(--text-title);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.specimen {
+  font-size: var(--text-specimen);
+  letter-spacing: -0.05em;
+  line-height: 0.92;
+  max-width: 12ch;
+}
+
+.project {
+  font-size: var(--text-project);
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+}

@@ -1,0 +1,5 @@
+.lead {
+  font-size: var(--text-lead);
+  line-height: 1.45;
+  max-width: 36ch;
+}

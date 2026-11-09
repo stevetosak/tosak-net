@@ -1,0 +1,23 @@
+.grid {
+  --grid-row-gap: 0;
+
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--grid-row-gap) var(--gap-columns);
+}
+
+.cell {
+  --cell-start: auto;
+  --cell-span: 12;
+
+  grid-column: var(--cell-start) / span var(--cell-span);
+  min-width: 0;
+}
+
+/* Below the narrow breakpoint every cell takes the full row, unless it keeps its place. */
+@media (width <= 60rem) {
+  .cell:not(.keep) {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+}
