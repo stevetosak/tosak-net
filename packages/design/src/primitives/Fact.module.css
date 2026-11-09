@@ -1,0 +1,11 @@
+.fact {
+  font-size: var(--text-lead);
+  line-height: 1.4;
+}
+
+/* The figures inside a fact. */
+.fact b {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}

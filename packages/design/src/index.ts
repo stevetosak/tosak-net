@@ -1,4 +1,5 @@
-// The base of the tosak design system. The primitives and the isometric model
-// kit are exported from here as they land. The styles are a separate entry:
-// `import '@tosak/design/styles.css'`.
+// The base of the tosak design system: the tokens and the primitives. The
+// isometric model kit is exported from here once it lands. The styles are a
+// separate entry: `import '@tosak/design/styles.css'`.
+export * from './primitives/index.ts';
 export * from './tokens/index.ts';

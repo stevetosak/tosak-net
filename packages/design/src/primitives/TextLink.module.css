@@ -1,0 +1,12 @@
+.link {
+  font-weight: 600;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--color-accent);
+  text-underline-offset: 0.2em;
+  white-space: nowrap;
+  padding-block: var(--space-xs);
+}
+
+.link:hover {
+  text-decoration-color: currentcolor;
+}
