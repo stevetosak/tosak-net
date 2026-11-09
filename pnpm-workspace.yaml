@@ -1,0 +1,8 @@
+packages:
+  - packages/*
+  - apps/*
+
+overrides:
+  # @napi-rs/wasm-runtime accepts ^2.0.0-alpha as a peer, so pnpm picks a 2.0 beta that does
+  # not match @emnapi/core 1.x and the Astro checker crashes. Keep the runtime on the core's line.
+  '@emnapi/runtime': 1.11.3

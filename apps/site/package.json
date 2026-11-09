@@ -1,0 +1,26 @@
+{
+  "name": "@tosak/site",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "The tosak.net landing page.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "typecheck": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/react": "^7.1.4",
+    "@tosak/design": "workspace:*",
+    "astro": "^7.4.7",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "~6.0.3"
+  }
+}

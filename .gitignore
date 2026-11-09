@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.astro/
+coverage/
+__pycache__/
+*.log
+.env
+.env.*
+.DS_Store
+.kalfa/
+.claude/

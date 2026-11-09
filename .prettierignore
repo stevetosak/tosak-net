@@ -1,0 +1,4 @@
+reference/
+pnpm-lock.yaml
+**/dist/
+**/.astro/
