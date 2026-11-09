@@ -5,16 +5,26 @@
   "type": "module",
   "description": "The tosak design system: tokens, React primitives and the isometric model kit.",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./styles.css": "./src/styles/index.css"
   },
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
+    "tokens": "node scripts/emit-tokens.ts",
     "typecheck": "tsc -p tsconfig.json",
-    "test": "vitest run --passWithNoTests"
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@fontsource-variable/rethink-sans": "^5.3.0",
+    "@fontsource-variable/spline-sans-mono": "^5.3.0"
   },
   "peerDependencies": {
     "react": "^19.0.0"
   },
   "devDependencies": {
+    "@types/node": "^24.19.2",
     "@types/react": "^19.3.0",
     "react": "^19.3.1",
     "typescript": "~6.0.3",
