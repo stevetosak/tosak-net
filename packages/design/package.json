@@ -6,6 +6,7 @@
   "description": "The tosak design system: tokens, React primitives and the isometric model kit.",
   "exports": {
     ".": "./src/index.ts",
+    "./model": "./src/model/index.ts",
     "./styles.css": "./src/styles/index.css"
   },
   "sideEffects": [

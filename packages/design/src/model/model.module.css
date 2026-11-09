@@ -1,0 +1,131 @@
+/* The isometric model: the colours of each material's faces, and the states
+   that the motion sets as data attributes. */
+
+.model {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.box > polygon {
+  stroke: var(--color-edge);
+  stroke-width: 1;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  transition:
+    fill var(--dur-long) var(--ease-out),
+    fill-opacity var(--dur-long) var(--ease-out);
+}
+
+.top {
+  fill: var(--face-top);
+}
+
+.left {
+  fill: var(--face-left);
+}
+
+.right {
+  fill: var(--face-right);
+}
+
+/* Materials. */
+.block {
+  --face-top: var(--color-face-top);
+  --face-left: var(--color-face-left);
+  --face-right: var(--color-face-right);
+}
+
+.slab {
+  --face-top: var(--color-slab-top);
+  --face-left: var(--color-slab-left);
+  --face-right: var(--color-slab-right);
+}
+
+.door {
+  --face-top: var(--color-door-top);
+  --face-left: var(--color-door-left);
+  --face-right: var(--color-door-right);
+}
+
+.tower {
+  --face-top: var(--color-tower-top);
+  --face-left: var(--color-tower-left);
+  --face-right: var(--color-tower-right);
+}
+
+.lamp {
+  --lamp: var(--color-ok);
+}
+
+.light {
+  --face-top: var(--lamp);
+  --face-left: color-mix(in oklab, var(--lamp) 82%, black);
+  --face-right: color-mix(in oklab, var(--lamp) 66%, black);
+}
+
+.shadow {
+  fill: var(--color-shadow);
+  stroke: none;
+}
+
+/* A job grows and shrinks from the middle of its base. */
+.piece,
+.piece > .box {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+/* States. */
+.machine[data-status='down'] .slab {
+  --face-top: var(--color-down-top);
+  --face-left: var(--color-down-left);
+  --face-right: var(--color-down-right);
+}
+
+.job[data-release='new'] .box {
+  --face-top: var(--color-accent-top);
+  --face-left: var(--color-accent);
+  --face-right: var(--color-accent-right);
+}
+
+.job[data-status='failing'] .box {
+  --face-top: var(--color-down-top);
+  --face-left: var(--color-down-left);
+  --face-right: var(--color-down-right);
+}
+
+.job[data-status='starting'] .box > polygon {
+  fill-opacity: 0.16;
+  stroke: var(--color-ink-2);
+  stroke-dasharray: 3 3;
+}
+
+.job[data-release='new'][data-status='starting'] .box > polygon {
+  stroke: var(--color-accent-right);
+}
+
+.lamp[data-state='warn'] {
+  --lamp: var(--color-warn);
+}
+
+.lamp[data-state='stop'] {
+  --lamp: var(--color-stop);
+}
+
+.lamp[data-state='off'] {
+  --lamp: var(--color-slab-left);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lamp[data-state='warn'] {
+    animation: blink 1.1s steps(1, end) infinite;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.35;
+  }
+}

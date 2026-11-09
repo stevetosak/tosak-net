@@ -1,6 +1,7 @@
 ---
 import '@tosak/design/styles.css';
 import { Container, Heading, Lead, TextLink } from '@tosak/design';
+import { Model, Plant, plantView } from '@tosak/design/model';
 
 const title = 'tosak';
 ---
@@ -17,6 +18,12 @@ const title = 'tosak';
       <Heading level={1}>{title}</Heading>
       <Lead>The landing page is being built.</Lead>
       <TextLink href="https://docs.tosak.net/">Read the build notes</TextLink>
+      <Model
+        view={plantView}
+        title="A model of tosak as a small factory: the loading dock, three cells, the control room and the offsite store"
+      >
+        <Plant />
+      </Model>
     </Container>
   </body>
 </html>
