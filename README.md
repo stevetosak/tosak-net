@@ -23,6 +23,12 @@ pnpm --filter @tosak/site dev   # the page on http://localhost:4321
 pnpm gate                       # lint, format check, typecheck, test, build: what CI runs
 ```
 
+The design tokens live in one TypeScript source,
+`packages/design/src/tokens/values.ts`. After a change to it,
+`pnpm --filter @tosak/design tokens` writes `src/styles/tokens.css`; a test
+fails while the two differ. An application loads the typefaces, the tokens and
+the element defaults with one import: `import '@tosak/design/styles.css'`.
+
 The platform the page describes is
 [hetzner-cloud-infra](https://github.com/stevetosak/hetzner-cloud-infra), and
 its documentation is on [docs.tosak.net](https://docs.tosak.net).

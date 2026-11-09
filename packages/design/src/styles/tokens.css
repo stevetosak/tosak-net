@@ -1,0 +1,94 @@
+/* Generated from src/tokens/values.ts by `pnpm --filter @tosak/design tokens`. Do not edit. */
+
+:root {
+  --color-paper: oklch(0.925 0.006 250);
+  --color-paper-2: oklch(0.955 0.004 250);
+  --color-paper-3: oklch(0.89 0.007 250);
+  --color-ink: oklch(0.22 0.015 250);
+  --color-ink-2: oklch(0.34 0.015 250);
+  --color-muted: oklch(0.45 0.015 250);
+  --color-rule: oklch(0.8 0.008 250);
+  --color-accent: oklch(0.64 0.22 354);
+  --color-accent-top: oklch(0.76 0.16 352);
+  --color-accent-right: oklch(0.54 0.2 356);
+  --color-accent-ink: oklch(0.22 0.015 250);
+  --color-focus: oklch(0.22 0.015 250);
+  --color-ok: oklch(0.68 0.15 152);
+  --color-warn: oklch(0.8 0.15 78);
+  --color-stop: oklch(0.6 0.2 32);
+  --color-face-top: oklch(0.995 0.002 250);
+  --color-face-left: oklch(0.93 0.004 250);
+  --color-face-right: oklch(0.85 0.006 250);
+  --color-slab-top: oklch(0.86 0.007 250);
+  --color-slab-left: oklch(0.77 0.009 250);
+  --color-slab-right: oklch(0.69 0.01 250);
+  --color-down-top: oklch(0.42 0.012 250);
+  --color-down-left: oklch(0.32 0.012 250);
+  --color-down-right: oklch(0.26 0.012 250);
+  --color-door-top: oklch(0.44 0.015 250);
+  --color-door-left: oklch(0.28 0.015 250);
+  --color-door-right: oklch(0.21 0.015 250);
+  --color-tower-top: oklch(0.72 0.01 250);
+  --color-tower-left: oklch(0.62 0.011 250);
+  --color-tower-right: oklch(0.54 0.012 250);
+  --color-edge: color-mix(in oklab, var(--color-ink) 24%, transparent);
+  --color-shadow: color-mix(in oklab, var(--color-ink) 10%, transparent);
+  --font-display: 'Rethink Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Rethink Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-readout: 'Spline Sans Mono Variable', ui-monospace, monospace;
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-md: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-title: clamp(1.375rem, 0.8vw + 1.05rem, 1.875rem);
+  --text-lead: clamp(1.125rem, 0.45vw + 1rem, 1.375rem);
+  --text-section: clamp(2.25rem, 2.6vw + 1.2rem, 4.25rem);
+  --text-display: clamp(2.5rem, 3vw + 1.25rem, 4.75rem);
+  --text-figure: clamp(2.25rem, 2.4vw + 1.2rem, 3.5rem);
+  --text-specimen: clamp(3rem, 6vw + 0.5rem, 7rem);
+  --text-project: clamp(2.5rem, 3vw + 1.1rem, 4.25rem);
+  --space-3xs: 2px;
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+  --space-4xl: 144px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+  --dur-camera: 900ms;
+  --radius-card: 4px;
+  --radius-btn: 999px;
+  --rule-hair: 1px;
+  --rule-strong: 2px;
+  --container: 1360px;
+  --gutter: 64px;
+  --gap-columns: 32px;
+  --section-gap: 176px;
+  --section-gap-l: 240px;
+  --nav-h: 72px;
+}
+
+@media (width <= 60rem) {
+  :root {
+    --gutter: 24px;
+    --section-gap: 96px;
+    --section-gap-l: 120px;
+  }
+}
+
+@media (width <= 40rem) {
+  :root {
+    --gutter: 16px;
+    --section-gap: 72px;
+    --section-gap-l: 96px;
+    --gap-columns: 16px;
+  }
+}
