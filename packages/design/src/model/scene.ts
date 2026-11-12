@@ -45,6 +45,13 @@ export type JobPlacement = Readonly<
   Record<WorkerId, Readonly<Partial<Record<SlotIndex, JobKind>>>>
 >;
 
+/** A starting job is a dashed outline until its health check passes; a failing one is dark. */
+export type JobStatus = 'ready' | 'starting' | 'failing';
+/** A job of a release that is under way shows in the accent colour. */
+export type ReleaseMark = 'current' | 'new';
+/** A machine's lamp: all well, correcting, stopped, or gone with the whole plant. */
+export type LampState = 'ok' | 'warn' | 'stop' | 'off';
+
 export const workerIds = ['w1', 'w2', 'w3'] as const satisfies readonly WorkerId[];
 export const slotIndexes = [0, 1, 2, 3] as const satisfies readonly SlotIndex[];
 

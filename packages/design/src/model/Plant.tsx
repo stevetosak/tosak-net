@@ -12,7 +12,10 @@ import {
   workerIds,
   type JobKind,
   type JobPlacement,
+  type JobStatus,
+  type LampState,
   type MachineShape,
+  type ReleaseMark,
   type SlotIndex,
   type WorkerId,
 } from './scene.ts';
@@ -55,8 +58,6 @@ export function Machine({ machine, status = 'up', className, ...rest }: MachineP
   );
 }
 
-export type LampState = 'ok' | 'warn' | 'stop' | 'off';
-
 export interface LampProps extends GroupProps {
   machine: MachineShape;
   state?: LampState;
@@ -83,9 +84,9 @@ export interface JobProps extends Omit<GroupProps, 'slot'> {
   worker: WorkerId;
   slot: SlotIndex;
   /** A job of the new release shows in the accent colour. */
-  release?: 'current' | 'new';
+  release?: ReleaseMark;
   /** A starting job is a dashed outline; a failing one is dark. */
-  status?: 'ready' | 'starting' | 'failing';
+  status?: JobStatus;
 }
 
 /** A job in a slot of a cell: a block, or a stack of plates for the database. */
