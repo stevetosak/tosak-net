@@ -28,8 +28,9 @@ not checked in a browser). doma has no component library and no dark theme,
 but it has a brand of its own, written down in its `DESIGN.md`: a
 "ledger" look with its own palette and three other font families. A design
 system that only carries the landing page's look would make doma give that
-up. This Plan therefore treats the token names as the shared contract and the
-prototype's values as the default theme, which an application can replace.
+up. So the token names are the shared contract and the prototype's values
+are the default theme, which an application can replace
+([decided on 2026-11-12](../adr/0002-each-tosak-application-keeps-its-own-brand-through-a-theme-of-the-design-system.md)).
 
 The work is done when a second application installs a published version,
 draws its screens from the package's components in its own theme, and no
@@ -123,10 +124,6 @@ application draws those parts from the package.
 
 ## Open questions
 
-- One look or a theme per application. This Plan assumes themes, because
-  doma's brand is written down and accepted. The other way, every tosak
-  application in the landing page's look, makes the theme work unnecessary
-  but asks doma to drop its palette and families.
 - The npm scope and the release trigger. No package is published under
   `@tosak`, and the registry's organisation listing for `tosak` returned 404
   on 2026-11-12, so the scope looks free; it is not claimed. Authos publishes
