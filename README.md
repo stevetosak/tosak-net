@@ -34,6 +34,13 @@ slab, lamp and job components, and one scene description of the plant that the
 hero and the tour both draw. Its arithmetic follows `reference/parts.py`, and a
 test compares every point it draws with the prototype's built page.
 
+The model moves on `@tosak/design/motion`: one pausable clock for the
+chapters, the control loop and the animations, and a player for the chapters.
+The plant's floor is data (`floor.ts` in the model kit): pure functions for
+the control room's rules, and a small store a React island subscribes to.
+Time moves only when the clock is advanced, so the tests run the control loop
+on a fake clock.
+
 The platform the page describes is
 [hetzner-cloud-infra](https://github.com/stevetosak/hetzner-cloud-infra), and
 its documentation is on [docs.tosak.net](https://docs.tosak.net).

@@ -1,4 +1,32 @@
 export { cameraTransform, frameRect, type Camera, type Size } from './camera.ts';
+export { ControlLoop, Floor, type ControlLoopOptions } from './control-loop.ts';
+export {
+  blackout,
+  endRelease,
+  failJob,
+  floorAtRest,
+  freeSlots,
+  inStep,
+  jobsOf,
+  jobsOn,
+  lightUp,
+  loseJob,
+  promote,
+  reconcile,
+  release,
+  removeJob,
+  requestTargets,
+  restartJob,
+  restoreData,
+  startJob,
+  startMachine,
+  stopMachine,
+  type AppId,
+  type AppOrder,
+  type FloorJob,
+  type FloorState,
+  type Place,
+} from './floor.ts';
 export {
   IsoBox,
   Model,
@@ -16,7 +44,6 @@ export {
   Vault,
   type JobProps,
   type LampProps,
-  type LampState,
   type MachineProps,
   type PlantProps,
 } from './Plant.tsx';
@@ -39,9 +66,12 @@ export {
   type DoorShape,
   type JobKind,
   type JobPlacement,
+  type JobStatus,
   type LabelledPart,
+  type LampState,
   type MachineShape,
   type MachineId,
+  type ReleaseMark,
   type SlotIndex,
   type TourFocus,
   type VaultShape,
@@ -65,3 +95,4 @@ export {
   type Point,
   type Rect,
 } from './projection.ts';
+export { readout, type FloorReadout, type LoopState, type Pip } from './readout.ts';
