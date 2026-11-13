@@ -14,7 +14,8 @@
     "typecheck": "pnpm -r --if-present typecheck",
     "test": "pnpm -r --if-present test",
     "build": "pnpm -r --if-present build",
-    "gate": "pnpm lint && pnpm format:check && pnpm typecheck && pnpm test && pnpm build"
+    "gate": "pnpm lint && pnpm format:check && pnpm typecheck && pnpm test && pnpm build",
+    "test:browser": "pnpm --filter @tosak/site test:browser"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

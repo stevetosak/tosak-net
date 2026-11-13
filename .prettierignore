@@ -2,3 +2,5 @@ reference/
 pnpm-lock.yaml
 **/dist/
 **/.astro/
+**/playwright-report/
+**/test-results/

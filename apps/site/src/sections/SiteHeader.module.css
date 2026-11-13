@@ -1,0 +1,40 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-h);
+}
+
+.word {
+  padding-block: var(--space-xs);
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  gap: var(--space-xl);
+}
+
+.nav a {
+  padding-block: var(--space-xs);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--color-accent);
+}
+
+@media (width <= 40rem) {
+  .nav {
+    gap: var(--space-md);
+  }
+}

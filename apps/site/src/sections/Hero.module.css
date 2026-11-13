@@ -1,0 +1,80 @@
+.hero {
+  padding-top: var(--space-xl);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-lg) var(--gap-columns);
+  align-items: end;
+}
+
+.title {
+  grid-column: 1 / span 7;
+}
+
+.side {
+  grid-column: 8 / span 5;
+  display: grid;
+  gap: var(--space-lg);
+  justify-items: start;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md) var(--space-lg);
+}
+
+.story {
+  display: grid;
+  gap: var(--space-lg);
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: var(--rule-hair) solid var(--color-rule);
+  color: var(--color-ink-2);
+}
+
+.chapters {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-lg) var(--gap-columns);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: chapter;
+}
+
+.chapters li {
+  display: grid;
+  align-content: start;
+  gap: var(--space-xs);
+  padding-top: var(--space-sm);
+  border-top: var(--rule-strong) solid var(--color-ink);
+  font-size: var(--text-sm);
+  counter-increment: chapter;
+}
+
+.name {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.name::before {
+  content: counter(chapter) ' ';
+  font-weight: 400;
+  color: var(--color-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (width <= 60rem) {
+  .title,
+  .side {
+    grid-column: 1 / -1;
+  }
+
+  .chapters {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

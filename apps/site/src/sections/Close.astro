@@ -1,0 +1,42 @@
+---
+import { Button, Container, Heading, Lead, TextLink } from '@tosak/design';
+import { docs, github, linkedin } from '../links.ts';
+import styles from './Close.module.css';
+---
+
+<Container as="section" className={styles.close} aria-labelledby="close-title">
+  <Heading level={2} id="close-title" size="specimen" className={styles.title}>
+    Next: an open&#8209;source cloud platform.
+  </Heading>
+  <ol class={styles.aims}>
+    <li>
+      <Heading level={3}>Open source</Heading>
+      <p>The platform and kluster, in the open: read it, run it, build on it.</p>
+      <TextLink
+        href="https://github.com/stevetosak/hetzner-cloud-infra"
+        aria-label="The platform on GitHub"
+      >
+        GitHub
+      </TextLink>
+    </li>
+    <li>
+      <Heading level={3}>Apps plug in</Heading>
+      <p>An app joins from its own repository, open or closed source.</p>
+    </li>
+    <li>
+      <Heading level={3}>Any provider</Heading>
+      <p>Today one provider runs every machine. Next, any provider can.</p>
+    </li>
+  </ol>
+  <div class={styles.body}>
+    <Lead className={styles.lead}>tosak runs my own apps today. This is where it goes.</Lead>
+    <p class={styles.sign}>Stefan Toskovski</p>
+    <div class={styles.actions}>
+      <Button href={docs} variant="secondary">
+        Read the build notes
+      </Button>
+      <TextLink href={github}>GitHub</TextLink>
+      <TextLink href={linkedin}>LinkedIn</TextLink>
+    </div>
+  </div>
+</Container>

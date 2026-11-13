@@ -1,0 +1,37 @@
+---
+// The hero: the claim, and the working model under it. The model is an island
+// that the server renders at rest; the chapters as text stand in for its motion
+// when scripts or motion are off.
+import { Button, Container, Heading, Lead, TextLink } from '@tosak/design';
+import HeroModel from '../hero/HeroModel.tsx';
+import { captions, stories } from '../hero/captions.ts';
+import { buildArticle } from '../links.ts';
+import styles from './Hero.module.css';
+---
+
+<Container as="section" className={styles.hero} aria-labelledby="hero-title">
+  <div class={styles.head}>
+    <Heading level={1} id="hero-title" className={styles.title}>
+      A working model of my cloud.
+    </Heading>
+    <div class={styles.side}>
+      <Lead>Git says what must run. The cluster keeps checking, and puts right what breaks.</Lead>
+      <div class={styles.actions}>
+        <Button href={buildArticle}>Read how it is built</Button>
+        <TextLink href="#me">About me</TextLink>
+      </div>
+    </div>
+  </div>
+  <HeroModel client:load />
+  <div class:list={[styles.story, 'still-only']}>
+    <p>{captions.about}</p>
+    <ol class={styles.chapters} aria-label="What the model shows">
+      {stories.map(({ title, lines }) => (
+        <li>
+          <p class={styles.name}>{title}</p>
+          <p>{lines.join(' ')}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</Container>

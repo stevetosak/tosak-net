@@ -1,0 +1,19 @@
+---
+// One step of the tour: a claim, its body and its measured fact. The camera
+// frames the step's focus while the step is in the middle of the screen.
+import { Heading } from '@tosak/design';
+import type { TourFocus } from '@tosak/design/model';
+import styles from './Tour.module.css';
+
+interface Props {
+  focus: TourFocus;
+  title: string;
+}
+
+const { focus, title } = Astro.props;
+---
+
+<li class={styles.step} data-tour-step={focus}>
+  <Heading level={3}>{title}</Heading>
+  <slot />
+</li>

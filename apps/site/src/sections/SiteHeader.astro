@@ -1,0 +1,15 @@
+---
+import { Container } from '@tosak/design';
+import styles from './SiteHeader.module.css';
+---
+
+<Container as="header" className={styles.header}>
+  <a class={styles.word} href="#top" aria-label="tosak, home">
+    tosak
+  </a>
+  <nav class={styles.nav} aria-label="Sections">
+    <a href="#parts">The platform</a>
+    <a href="#me">About me</a>
+    <a href="#projects">Projects</a>
+  </nav>
+</Container>
