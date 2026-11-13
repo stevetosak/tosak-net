@@ -14,6 +14,7 @@
     "@astrojs/react": "^7.1.4",
     "@tosak/design": "workspace:*",
     "astro": "^7.4.7",
+    "clsx": "^2.1.1",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },

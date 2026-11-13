@@ -1,0 +1,20 @@
+/* The page's one global rule: the gate between the moving model and the still
+   page. The script in the head marks the root `js` before the first paint.
+   With scripts and motion allowed, the model runs and its controls show;
+   otherwise the reader gets the plant at rest and each chapter as text. */
+
+html:not(.js) .motion-only {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-only {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .still-only {
+    display: none !important;
+  }
+}

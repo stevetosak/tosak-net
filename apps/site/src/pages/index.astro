@@ -1,29 +1,25 @@
 ---
-import '@tosak/design/styles.css';
-import { Container, Heading, Lead, TextLink } from '@tosak/design';
-import { Model, Plant, plantView } from '@tosak/design/model';
-
-const title = 'tosak';
+import Page from '../layouts/Page.astro';
+import Close from '../sections/Close.astro';
+import Hero from '../sections/Hero.astro';
+import Maker from '../sections/Maker.astro';
+import Projects from '../sections/Projects.astro';
+import SiteFooter from '../sections/SiteFooter.astro';
+import SiteHeader from '../sections/SiteHeader.astro';
+import Tour from '../sections/Tour.astro';
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-  </head>
-  <body>
-    <Container as="main">
-      <Heading level={1}>{title}</Heading>
-      <Lead>The landing page is being built.</Lead>
-      <TextLink href="https://docs.tosak.net/">Read the build notes</TextLink>
-      <Model
-        view={plantView}
-        title="A model of tosak as a small factory: the loading dock, three cells, the control room and the offsite store"
-      >
-        <Plant />
-      </Model>
-    </Container>
-  </body>
-</html>
+<Page
+  title="tosak Working model"
+  description="Stefan Toskovski is a software engineer in Skopje. tosak is the cloud he built and runs, shown here as a working scale model you can ship, break and rebuild."
+>
+  <SiteHeader />
+  <main id="top">
+    <Hero />
+    <Tour />
+    <Maker />
+    <Projects />
+    <Close />
+  </main>
+  <SiteFooter />
+</Page>

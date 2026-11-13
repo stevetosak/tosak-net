@@ -1,0 +1,58 @@
+---
+import { Container, Heading, Lead, TextLink } from '@tosak/design';
+import { github, linkedin } from '../links.ts';
+import styles from './Maker.module.css';
+---
+
+<section id="me" class={styles.maker} aria-labelledby="me-title">
+  <Container className={styles.grid}>
+    <div class={styles.head}>
+      <Heading level={2} id="me-title" measure={20}>
+        Building reliable, scalable systems one node at a time.
+      </Heading>
+      <Lead className={styles.lead}>I am Stefan Toskovski, a software engineer in Skopje.</Lead>
+    </div>
+    <aside class={styles.plate} aria-label="Stefan Toskovski in short">
+      <p class={styles.name}>Stefan Toskovski</p>
+      <dl>
+        <div>
+          <dt>Studied</dt>
+          <dd>Computer Engineering, Ss. Cyril and Methodius University, 2022 to 2026</dd>
+        </div>
+        <div>
+          <dt>Writes</dt>
+          <dd>C#, TypeScript, Kotlin, Go, Java</dd>
+        </div>
+        <div>
+          <dt>Speaks</dt>
+          <dd>Macedonian, English</dd>
+        </div>
+      </dl>
+      <p class={styles.links}>
+        <TextLink href={github}>GitHub</TextLink>
+        <TextLink href={linkedin}>LinkedIn</TextLink>
+      </p>
+    </aside>
+    <ol class={styles.work} aria-label="Work">
+      <li>
+        <Heading level={3}>CodeChem</Heading>
+        <p class={styles.role}>Industrial IoT platform, since February 2026</p>
+        <ul>
+          <li>Legacy platform migration, IoT integrations and .NET MAUI mobile development.</li>
+          <li>
+            Application security and user management with Keycloak; deployment workflows and CI/CD
+            pipelines.
+          </li>
+          <li>Agentic QA workflows, tooling and integrations.</li>
+        </ul>
+      </li>
+      <li>
+        <Heading level={3}>G+D Netcetera</Heading>
+        <p class={styles.role}>Intern, July to October 2025</p>
+        <ul>
+          <li>Built one view of cloud spend across AWS, Cloudflare and DigitalOcean.</li>
+        </ul>
+      </li>
+    </ol>
+  </Container>
+</section>

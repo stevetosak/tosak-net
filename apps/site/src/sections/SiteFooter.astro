@@ -1,0 +1,30 @@
+---
+import { Container } from '@tosak/design';
+import { docs, github, linkedin } from '../links.ts';
+import { instant, numbers } from '../numbers/index.ts';
+import styles from './SiteFooter.module.css';
+---
+
+<Container as="footer" className={styles.footer}>
+  <div class={styles.foot}>
+    <a class={styles.word} href="#top" aria-label="tosak, back to the top">
+      tosak
+    </a>
+    <p class={styles.maker}>Built and run by Stefan Toskovski, on four machines in Helsinki.</p>
+    <ul class={styles.links}>
+      <li>
+        <a href={docs}>Docs</a>
+      </li>
+      <li>
+        <a href={`${docs}status/`}>Status</a>
+      </li>
+      <li>
+        <a href={github}>GitHub</a>
+      </li>
+      <li>
+        <a href={linkedin}>LinkedIn</a>
+      </li>
+    </ul>
+    <p class={styles.measured}>Numbers measured on {instant(numbers.measuredAt)}.</p>
+  </div>
+</Container>

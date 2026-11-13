@@ -1,0 +1,65 @@
+.section {
+  padding-top: var(--section-gap);
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2xl) var(--gap-columns);
+  align-items: start;
+  margin-top: var(--space-2xl);
+}
+
+.project {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-md);
+  padding-top: var(--space-lg);
+  border-top: var(--rule-strong) solid var(--color-ink);
+}
+
+.project > p:not([class]) {
+  max-width: 34ch;
+}
+
+.stack,
+.caption {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.hosts {
+  display: grid;
+  width: 100%;
+  margin: 0;
+}
+
+.hosts div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding-block: var(--space-xs);
+  border-top: var(--rule-hair) solid var(--color-rule);
+}
+
+.hosts a {
+  text-decoration: none;
+}
+
+.hosts a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--color-accent);
+}
+
+.hosts dd {
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (width <= 60rem) {
+  .projects {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

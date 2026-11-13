@@ -1,0 +1,62 @@
+---
+import { Container, Heading, TextLink } from '@tosak/design';
+import { dayMonth, numbers, percent } from '../numbers/index.ts';
+import styles from './Projects.module.css';
+
+const hostLinks: Readonly<Record<string, string>> = {
+  'authos.tosak.net': 'https://authos.tosak.net/',
+  'authos-api.tosak.net': 'https://authos-api.tosak.net/.well-known/openid-configuration',
+  'authos-demo.tosak.net': 'https://authos-demo.tosak.net/',
+};
+---
+
+<Container as="section" id="projects" className={styles.section} aria-labelledby="projects-title">
+  <Heading level={2} id="projects-title">
+    Other things I built.
+  </Heading>
+  <div class={styles.projects}>
+    <article class={styles.project}>
+      <Heading level={3} size="project">
+        Authos
+      </Heading>
+      <p>An OpenID Connect identity provider I wrote from scratch, with single sign-on.</p>
+      <p class={styles.stack}>TypeScript, Kotlin</p>
+      <dl class={styles.hosts}>
+        {numbers.hosts.map(({ host, passedPercent }) => (
+          <div>
+            <dt>
+              <a href={hostLinks[host] ?? `https://${host}/`}>{host}</a>
+            </dt>
+            <dd>{percent(passedPercent)}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class={styles.caption}>
+        Runs on tosak. Checks passed since {dayMonth(numbers.checks.since)}.
+      </p>
+      <TextLink href="https://github.com/stevetosak/authos" aria-label="Authos on GitHub">
+        GitHub
+      </TextLink>
+    </article>
+    <article class={styles.project}>
+      <Heading level={3} size="project">
+        wasteio
+      </Heading>
+      <p>Real-time waste management fed by IoT sensors. I led its team of 7.</p>
+      <p class={styles.stack}>Spring Boot, React, Go, MQTT</p>
+      <TextLink href="https://github.com/stevetosak/wasteio" aria-label="wasteio on GitHub">
+        GitHub
+      </TextLink>
+    </article>
+    <article class={styles.project}>
+      <Heading level={3} size="project">
+        imaps
+      </Heading>
+      <p>Indoor maps with the route to any room. It won a 2024 hackathon.</p>
+      <p class={styles.stack}>Spring Boot, React, PostgreSQL</p>
+      <TextLink href="https://github.com/stevetosak/imaps" aria-label="imaps on GitHub">
+        GitHub
+      </TextLink>
+    </article>
+  </div>
+</Container>

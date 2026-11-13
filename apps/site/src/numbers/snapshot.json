@@ -1,0 +1,14 @@
+{
+  "measuredAt": "2026-11-08T10:48:00Z",
+  "checks": { "since": "2026-11-05", "total": 29643, "failed": 7 },
+  "applications": { "matchGit": 16, "total": 16 },
+  "releases": { "since": "2026-10-23", "count": 7 },
+  "decisions": 14,
+  "drill": { "ranAt": "2026-11-01", "passed": true, "minutes": 4, "next": "2026-12-01" },
+  "rehearsedAt": "2026-10-25",
+  "hosts": [
+    { "host": "authos.tosak.net", "passedPercent": 100 },
+    { "host": "authos-api.tosak.net", "passedPercent": 99.95 },
+    { "host": "authos-demo.tosak.net", "passedPercent": 99.87 }
+  ]
+}

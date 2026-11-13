@@ -1,0 +1,161 @@
+/* The hero model, the captions under it, and its console: the loop's readout
+   beside the status line, and the chapter buttons below. */
+
+.stage {
+  margin: var(--space-xl) 0 0;
+}
+
+.scroll {
+  position: relative;
+}
+
+.dots circle {
+  fill: var(--color-ink);
+  opacity: 0;
+}
+
+.tags {
+  position: relative;
+  height: 2.75rem;
+  margin-top: var(--space-sm);
+}
+
+.tags span {
+  --x: 50%; /* each caption sets its own, from the plant's layout */
+
+  position: absolute;
+  top: 0;
+  left: var(--x);
+  transform: translateX(-50%);
+  display: grid;
+  justify-items: center;
+  line-height: 1.35;
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.tags b {
+  font-weight: 600;
+  color: var(--color-ink-2);
+}
+
+.console {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-md) var(--gap-columns);
+  align-items: start;
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: var(--rule-hair) solid var(--color-rule);
+}
+
+.loop {
+  grid-column: 1 / span 5;
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  align-items: center;
+  column-gap: var(--space-md);
+  transition: opacity var(--dur-long) var(--ease-out);
+}
+
+.dim {
+  opacity: 0.25;
+}
+
+.key {
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.pips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  min-height: 12px;
+}
+
+.group {
+  display: inline-flex;
+  gap: var(--space-2xs);
+}
+
+.pip {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  border: 1.5px solid var(--color-ink);
+  background: var(--color-ink);
+  transition:
+    background-color var(--dur-long) var(--ease-out),
+    border-color var(--dur-long) var(--ease-out);
+}
+
+.pip[data-pip='new'] {
+  background: var(--color-accent);
+  border-color: var(--color-accent-right);
+}
+
+.pip[data-pip='unhealthy'] {
+  background: transparent;
+  border-style: dashed;
+  border-color: var(--color-ink-2);
+}
+
+.state {
+  --lamp: var(--color-ok);
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-2xs);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.state::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--lamp);
+}
+
+.state[data-state='warn'] {
+  --lamp: var(--color-warn);
+}
+
+.state[data-state='down'] {
+  --lamp: var(--color-stop);
+}
+
+.readout {
+  grid-column: 7 / span 6;
+}
+
+.chapters {
+  margin-top: var(--space-lg);
+}
+
+@media (width <= 60rem) {
+  .scroll {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+
+  .scroll > svg,
+  .scroll > .tags {
+    width: 860px;
+  }
+
+  .loop,
+  .readout {
+    grid-column: 1 / -1;
+  }
+}

@@ -1,0 +1,156 @@
+/* About me: a light band with the maker's plate and the work record. */
+
+.maker {
+  margin-top: var(--section-gap);
+  padding-block: var(--space-4xl);
+  background: var(--color-face-top);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-4xl) var(--gap-columns);
+  align-items: start;
+}
+
+.head {
+  grid-column: 1 / span 7;
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.lead {
+  max-width: 42ch;
+}
+
+.plate {
+  grid-column: 9 / span 4;
+  grid-row: 1 / span 2;
+  display: grid;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  border: var(--rule-hair) solid var(--color-ink);
+  border-radius: var(--radius-card);
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.plate dl {
+  display: grid;
+  margin: 0;
+}
+
+.plate dl div {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: var(--space-sm);
+  padding-block: var(--space-sm);
+  border-top: var(--rule-hair) solid var(--color-rule);
+}
+
+.plate dt {
+  padding-top: 0.12em;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.plate dd {
+  margin: 0;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  padding-top: var(--space-sm);
+  border-top: var(--rule-hair) solid var(--color-rule);
+}
+
+.work {
+  grid-column: 1 / span 7;
+  display: grid;
+  gap: var(--space-3xl);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.work > li {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-rows: auto 1fr;
+  gap: var(--space-2xs) var(--gap-columns);
+  padding-top: var(--space-lg);
+  border-top: var(--rule-strong) solid var(--color-ink);
+}
+
+.work h3,
+.role {
+  grid-column: 1 / span 3;
+}
+
+.role {
+  align-self: start;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.work ul {
+  grid-column: 4 / span 4;
+  grid-row: 1 / span 2;
+  display: grid;
+  gap: var(--space-sm);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.work ul li {
+  position: relative;
+  padding-left: var(--space-lg);
+}
+
+.work ul li::before {
+  content: '';
+  position: absolute;
+  top: 0.6em;
+  left: 0;
+  width: var(--space-xs);
+  height: var(--space-xs);
+  border-radius: 1px;
+  background: var(--color-ink);
+}
+
+@media (width <= 60rem) {
+  .grid {
+    row-gap: var(--space-2xl);
+  }
+
+  .head,
+  .plate,
+  .work {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  .work > li {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .work h3,
+  .role,
+  .work ul {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .work ul {
+    margin-top: var(--space-sm);
+  }
+}

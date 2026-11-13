@@ -1,0 +1,65 @@
+/* The tour's picture: it stays beside the steps while they scroll, and fades the
+   parts that the current step is not about. */
+
+.figure {
+  --feather: var(--space-2xl);
+
+  margin: 0;
+  overflow: clip;
+  mask-image:
+    linear-gradient(
+      to right,
+      transparent,
+      var(--color-ink) var(--feather),
+      var(--color-ink) calc(100% - var(--feather)),
+      transparent
+    ),
+    linear-gradient(
+      transparent,
+      var(--color-ink) var(--feather),
+      var(--color-ink) calc(100% - var(--feather)),
+      transparent
+    );
+  mask-composite: intersect;
+}
+
+.camera {
+  transform-origin: 0 0;
+  transition: transform var(--dur-camera) var(--ease-in-out);
+}
+
+.figure :global([data-part]) {
+  transition: opacity var(--dur-long) var(--ease-out);
+}
+
+.extra {
+  opacity: 0;
+  transition: opacity var(--dur-long) var(--ease-out);
+}
+
+.path {
+  fill: none;
+  stroke: var(--color-accent-right);
+  stroke-width: 2;
+  stroke-dasharray: 6 6;
+  vector-effect: non-scaling-stroke;
+}
+
+.figure[data-focus='machines'] :global(:is([data-part='door'], [data-part='vault'])),
+.figure[data-focus='road'] :global([data-part]:not([data-part='workers'])),
+.figure[data-focus='drill'] :global([data-part]:not([data-part='vault'], [data-part='data'])) {
+  opacity: 0.22;
+}
+
+.figure[data-focus='road'] [data-extra='road'],
+.figure[data-focus='drill'] [data-extra='drill'] {
+  opacity: 1;
+}
+
+@media (width <= 60rem) {
+  .figure {
+    --feather: var(--space-xl);
+
+    mask-image: linear-gradient(var(--color-ink) calc(100% - var(--feather)), transparent);
+  }
+}
