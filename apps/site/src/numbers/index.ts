@@ -1,7 +1,7 @@
 // The numbers the page states, measured at build time with their date. The
 // shape is the one tosak-status will return, so the page later reads the same
 // fields live. Every date is a UTC calendar day and is shown in UTC.
-import snapshot from './snapshot.json';
+import snapshot from './snapshot.json' with { type: 'json' };
 
 export interface StatusSnapshot {
   /** When the numbers were read, as an ISO 8601 instant. */

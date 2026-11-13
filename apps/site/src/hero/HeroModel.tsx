@@ -101,7 +101,14 @@ export default function HeroModel() {
   return (
     <>
       <figure className={styles.stage}>
-        <div ref={scene} className={styles.scroll}>
+        {/* On a narrow screen the plant scrolls sideways; a keyboard reader scrolls it once it has focus. */}
+        <div
+          ref={scene}
+          className={styles.scroll}
+          role="region"
+          aria-label="The model"
+          tabIndex={0}
+        >
           <Model view={plantView} title={TITLE}>
             <Door />
             {workerIds.map((worker) => (
