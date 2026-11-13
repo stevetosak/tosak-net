@@ -21,6 +21,17 @@ corepack enable pnpm
 pnpm install
 pnpm --filter @tosak/site dev   # the page on http://localhost:4321
 pnpm gate                       # lint, format check, typecheck, test, build: what CI runs
+pnpm test:browser               # the page in Chromium at 1440 and 375 px, with axe
+```
+
+The cluster runs the page as the image `stevetosak/tosak-net-site`: the static
+build behind unprivileged nginx on port 8080, as UID 10001 with a read-only
+root filesystem. CI builds and pushes it from `main` only, tagged `latest` and
+`alpha-<commit>`. To build and run it locally:
+
+```sh
+docker build -f apps/site/Dockerfile -t tosak-net-site .
+docker run --rm --read-only --tmpfs /tmp -p 8080:8080 tosak-net-site
 ```
 
 The design tokens live in one TypeScript source,
