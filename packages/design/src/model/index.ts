@@ -40,11 +40,13 @@ export {
   Job,
   Lamp,
   Machine,
+  Piece,
   Plant,
   Vault,
   type JobProps,
   type LampProps,
   type MachineProps,
+  type PieceProps,
   type PlantProps,
 } from './Plant.tsx';
 export {

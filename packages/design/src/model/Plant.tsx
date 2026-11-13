@@ -19,7 +19,7 @@ import {
   type SlotIndex,
   type WorkerId,
 } from './scene.ts';
-import { fixed } from './projection.ts';
+import { fixed, type Point } from './projection.ts';
 import styles from './model.module.css';
 
 // The parts of the plant. Each part carries `data-part`, by which a tour step
@@ -78,46 +78,66 @@ export function Lamp({ machine, state = 'ok', className, ...rest }: LampProps) {
   );
 }
 
-// `slot` is the job's place in its cell here, not the SVG attribute.
-export interface JobProps extends Omit<GroupProps, 'slot'> {
-  kind: JobKind;
-  worker: WorkerId;
-  slot: SlotIndex;
-  /** A job of the new release shows in the accent colour. */
+export interface PieceProps extends GroupProps {
+  /** What the piece is: a job's block or plates, or a release's ticket. */
+  shape: JobKind | 'ticket';
+  /** The screen point of the piece's origin. */
+  at: Point;
+  /** A piece of the new release shows in the accent colour. */
   release?: ReleaseMark;
-  /** A starting job is a dashed outline; a failing one is dark. */
+  /** A starting piece is a dashed outline; a failing one is dark. */
   status?: JobStatus;
 }
 
-/** A job in a slot of a cell: a block, or a stack of plates for the database. */
-export function Job({
-  kind,
-  worker,
-  slot,
+/**
+ * A piece at a point of the scene: a job, or something on its way, in the air.
+ * The motion moves its inner group (`data-piece`), which grows and shrinks from
+ * the middle of its base, and leaves the placement on the outer one.
+ */
+export function Piece({
+  shape,
+  at: [x, y],
   release = 'current',
   status = 'ready',
   className,
   ...rest
-}: JobProps) {
-  const [x, y] = slotOrigin(worker, slot);
+}: PieceProps) {
   return (
     <g
       className={clsx(styles.job, className)}
-      data-job={kind}
-      data-machine={worker}
-      data-slot={slot}
-      data-part={kind === 'data' ? 'data' : 'workers'}
+      data-job={shape}
       data-release={release}
       data-status={status}
       transform={`translate(${fixed(x, 1)} ${fixed(y, 1)})`}
       {...rest}
     >
-      <g className={styles.piece}>
-        {jobShapes[kind].map((shape, n) => (
-          <IsoBox key={n} shape={shape} />
+      <g className={styles.piece} data-piece="">
+        {jobShapes[shape].map((box, n) => (
+          <IsoBox key={n} shape={box} />
         ))}
       </g>
     </g>
+  );
+}
+
+// `slot` is the job's place in its cell here, not the SVG attribute.
+export interface JobProps extends Omit<PieceProps, 'slot' | 'shape' | 'at'> {
+  kind: JobKind;
+  worker: WorkerId;
+  slot: SlotIndex;
+}
+
+/** A job in a slot of a cell: a block, or a stack of plates for the database. */
+export function Job({ kind, worker, slot, ...rest }: JobProps) {
+  return (
+    <Piece
+      shape={kind}
+      at={slotOrigin(worker, slot)}
+      data-machine={worker}
+      data-slot={slot}
+      data-part={kind === 'data' ? 'data' : 'workers'}
+      {...rest}
+    />
   );
 }
 
