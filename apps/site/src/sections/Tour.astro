@@ -2,13 +2,28 @@
 // The tour: five steps, each a claim with its measured fact, beside the still
 // model whose camera frames the part each step is about.
 import { Container, Fact, Heading, TextLink } from '@tosak/design';
-import { count, dayMonth, minutes, numbers } from '../numbers/index.ts';
+import {
+  count,
+  dayMonth,
+  daysBetween,
+  duration,
+  lastDays,
+  minutes,
+  numbers,
+  passedPercent,
+  percent,
+  rebuild,
+} from '../numbers/index.ts';
 import TourCamera from '../tour/TourCamera.tsx';
-import { buildArticle } from '../links.ts';
+import { buildArticle, docs } from '../links.ts';
 import TourStep from './TourStep.astro';
 import styles from './Tour.module.css';
 
-const { checks, applications, releases, decisions, drill, rehearsedAt } = numbers;
+const { availability, offsiteCopy, drill } = numbers;
+const checkedDays = lastDays(daysBetween(availability.from, availability.to));
+const copyDays = lastDays(daysBetween(offsiteCopy.from, offsiteCopy.to));
+const failedUploads =
+  offsiteCopy.failedUploads === 1 ? '1 upload' : `${count(offsiteCopy.failedUploads)} uploads`;
 ---
 
 <Container as="section" id="parts" className={styles.tour} aria-labelledby="parts-title">
@@ -21,8 +36,8 @@ const { checks, applications, releases, decisions, drill, rehearsedAt } = number
         <p>Every app I ship runs here. I built it on plain cloud servers, and I run it myself.</p>
         <Fact>
           Every public address is checked each minute through Cloudflare, the way a visitor reaches
-          it: <b>{count(checks.total)}</b> checks since {dayMonth(checks.since)},{' '}
-          <b>{count(checks.failed)}</b> failed.
+          it: <b>{percent(passedPercent(availability.checks, availability.failed))}</b> of{' '}
+          {count(availability.checks)} checks passed over {checkedDays}.
         </Fact>
       </TourStep>
       <TourStep focus="road" title="Fully GitOps: Git decides what runs.">
@@ -30,12 +45,6 @@ const { checks, applications, releases, decisions, drill, rehearsedAt } = number
           Nobody changes the cluster by hand. Every change is a pull request, and once it merges,
           Argo&nbsp;CD makes the cluster match Git. A rollback is a revert.
         </p>
-        <Fact>
-          <b>
-            {applications.matchGit} of {applications.total}
-          </b>{' '}
-          apps match Git. <b>{releases.count}</b> releases since {dayMonth(releases.since)}.
-        </Fact>
       </TourStep>
       <TourStep focus="all" title="Every step is written down.">
         <p>
@@ -43,18 +52,29 @@ const { checks, applications, releases, decisions, drill, rehearsedAt } = number
           runbook. All of it is public.
         </p>
         <Fact>
-          <b>{decisions}</b> recorded decisions.{' '}
-          <TextLink href={buildArticle}>Read how it is built</TextLink>
+          <TextLink href={buildArticle}>Read how it is built</TextLink>, and{' '}
+          <TextLink href={docs}>every decision with its reason</TextLink>.
         </Fact>
       </TourStep>
       <TourStep focus="drill" title="Backups are tested, not trusted.">
         <p>
-          A full backup leaves the cluster every day. On the 1st of each month, a drill restores it
-          into a throwaway database and checks the data.
+          A full backup leaves the cluster every day, and every change follows it within minutes. On
+          the 1st of each month, a drill restores it into a throwaway database and checks the data.
         </p>
         <Fact>
-          <b>{minutes(drill.minutes)}</b>, {drill.passed ? 'passed' : 'failed'}, on{' '}
-          {dayMonth(drill.ranAt)}. Next drill: {dayMonth(drill.next)}.
+          {drill.passed && drill.restoreSeconds !== null ? (
+            <>
+              Restored and checked in <b>{duration(drill.restoreSeconds)}</b>, passed, on{' '}
+              {dayMonth(drill.finishedAt)}.
+            </>
+          ) : (
+            <>
+              The drill <b>failed</b> on {dayMonth(drill.finishedAt)}.
+            </>
+          )}{' '}
+          Next drill: {dayMonth(drill.next)}. The offsite copy was never more than{' '}
+          <b>{duration(offsiteCopy.maxLagSeconds)}</b> behind over {copyDays}, with {failedUploads}{' '}
+          failed.
         </Fact>
       </TourStep>
       <TourStep focus="all" title="Rebuildable from scratch, with one command.">
@@ -63,7 +83,9 @@ const { checks, applications, releases, decisions, drill, rehearsedAt } = number
           command builds the servers, installs every part from Git and restores the data.
         </p>
         <Fact>
-          Rehearsed end to end in a separate project on <b>{dayMonth(rehearsedAt)}</b>.
+          <b>{minutes(rebuild.minutes)}</b> from an empty project to every service running,
+          rehearsed on {dayMonth(rebuild.rehearsedOn)} with a fresh database.{' '}
+          <TextLink href={rebuild.log}>Read the rehearsal</TextLink>
         </Fact>
       </TourStep>
     </ol>

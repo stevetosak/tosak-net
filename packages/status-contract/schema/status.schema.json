@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tosak.net/api/status.schema.json",
+  "title": "StatusSnapshot",
+  "description": "What GET /api/status returns, and the shape of the page's build-time snapshot. Every section carries the time it was measured: a section whose source failed keeps its last good values with their old time, and the page falls back for that section alone.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["availability", "offsiteCopy", "drill"],
+  "properties": {
+    "availability": { "$ref": "#/$defs/availability" },
+    "offsiteCopy": { "$ref": "#/$defs/offsiteCopy" },
+    "drill": { "$ref": "#/$defs/drill" }
+  },
+  "$defs": {
+    "instant": {
+      "description": "An instant in UTC, ISO 8601.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "day": {
+      "description": "A UTC calendar day.",
+      "type": "string",
+      "format": "date"
+    },
+    "count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "availability": {
+      "title": "Availability",
+      "description": "The public-host probes over the window [from, to]: up to 30 days, shorter while the history is younger.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["measuredAt", "from", "to", "checks", "failed", "hosts"],
+      "properties": {
+        "measuredAt": { "$ref": "#/$defs/instant" },
+        "from": { "$ref": "#/$defs/instant" },
+        "to": { "$ref": "#/$defs/instant" },
+        "checks": {
+          "$ref": "#/$defs/count",
+          "description": "Every check of every host in the window."
+        },
+        "failed": { "$ref": "#/$defs/count", "description": "The checks that failed." },
+        "hosts": {
+          "description": "Every probed host, in name order. The page chooses which it shows.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/hostAvailability" }
+        }
+      }
+    },
+    "hostAvailability": {
+      "title": "HostAvailability",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["host", "checks", "failed", "passedPercent"],
+      "properties": {
+        "host": { "type": "string", "format": "hostname" },
+        "checks": { "$ref": "#/$defs/count" },
+        "failed": { "$ref": "#/$defs/count" },
+        "passedPercent": {
+          "description": "The share of passed checks, rounded down to two decimals, so 100 means no check failed.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    },
+    "offsiteCopy": {
+      "title": "OffsiteCopy",
+      "description": "How far the offsite copy of the database (the WAL archive) fell behind over the window [from, to].",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["measuredAt", "from", "to", "maxLagSeconds", "failedUploads"],
+      "properties": {
+        "measuredAt": { "$ref": "#/$defs/instant" },
+        "from": { "$ref": "#/$defs/instant" },
+        "to": { "$ref": "#/$defs/instant" },
+        "maxLagSeconds": {
+          "$ref": "#/$defs/count",
+          "description": "The longest time since the last archived segment, rounded up to whole seconds."
+        },
+        "failedUploads": { "$ref": "#/$defs/count" }
+      }
+    },
+    "drill": {
+      "title": "Drill",
+      "description": "The newest restore drill: the offsite backup restored into a throw-away database and every database checked.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["measuredAt", "finishedAt", "passed", "restoreSeconds", "databases", "next"],
+      "properties": {
+        "measuredAt": { "$ref": "#/$defs/instant" },
+        "finishedAt": { "$ref": "#/$defs/instant" },
+        "passed": { "type": "boolean" },
+        "restoreSeconds": {
+          "description": "From the start of the restore until the restored database was ready; null when a failed drill never got there.",
+          "type": ["integer", "null"],
+          "minimum": 0
+        },
+        "databases": {
+          "$ref": "#/$defs/count",
+          "description": "The databases restored and checked."
+        },
+        "next": { "$ref": "#/$defs/day" }
+      }
+    }
+  }
+}

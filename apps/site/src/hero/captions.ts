@@ -2,7 +2,7 @@
 // moving model shows them one at a time under the plant; without motion the
 // page shows each chapter's story as text. Both read them from here, so the
 // two never say different things.
-import { dayMonth, numbers } from '../numbers/index.ts';
+import { dayMonth, duration, numbers } from '../numbers/index.ts';
 
 const { drill } = numbers;
 const about = 'A small factory that keeps itself in step with Git.';
@@ -37,7 +37,10 @@ export const captions = {
   lose: {
     gone: 'The database is gone. Unlike a job, it cannot be started again from the order.',
     copy: 'It comes back from the offsite copy.',
-    restored: `Restored. The monthly drill does this for real: ${String(drill.minutes)} minutes on ${dayMonth(drill.ranAt)}.`,
+    restored:
+      drill.passed && drill.restoreSeconds !== null
+        ? `Restored. The monthly drill does this for real: ${duration(drill.restoreSeconds)} on ${dayMonth(drill.finishedAt)}.`
+        : 'Restored. The monthly drill does this for real, once a month.',
   },
   rebuild: {
     gone: 'Everything is gone. Only the offsite copy is left.',

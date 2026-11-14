@@ -6,11 +6,12 @@ the cluster that keeps itself in step with Git, and the work behind it.
 
 ## Layout
 
-| Path              | What it holds                                                              |
-| ----------------- | -------------------------------------------------------------------------- |
-| `packages/design` | The design system: tokens, React primitives and the isometric model kit.   |
-| `apps/site`       | The landing page: Astro, rendered to static HTML, with React islands.      |
-| `reference/`      | The accepted prototype, the visual baseline the build is compared against. |
+| Path                       | What it holds                                                               |
+| -------------------------- | --------------------------------------------------------------------------- |
+| `packages/design`          | The design system: tokens, React primitives and the isometric model kit.    |
+| `packages/status-contract` | The tosak-status contract: one JSON Schema and the types generated from it. |
+| `apps/site`                | The landing page: Astro, rendered to static HTML, with React islands.       |
+| `reference/`               | The accepted prototype, the visual baseline the build is compared against.  |
 
 ## Work on it
 
@@ -41,6 +42,14 @@ The design tokens live in one TypeScript source,
 `pnpm --filter @tosak/design tokens` writes `src/styles/tokens.css`; a test
 fails while the two differ. An application loads the typefaces, the tokens and
 the element defaults with one import: `import '@tosak/design/styles.css'`.
+
+The numbers the page states follow one contract,
+`packages/status-contract/schema/status.schema.json`: what `/api/status` will
+return, and the shape of the page's build-time snapshot. After a change to it,
+`pnpm --filter @tosak/status-contract types` writes `src/status.ts`; a test
+fails while the two differ, and the site's tests validate the snapshot against
+the schema. Each section carries its own measured time, so a source that fails
+leaves only its own numbers behind.
 
 The isometric model kit is `@tosak/design/model`: the projection, the box,
 slab, lamp and job components, and one scene description of the plant that the
