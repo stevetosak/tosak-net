@@ -27,7 +27,9 @@ pnpm test:browser               # the page in Chromium at 1440 and 375 px, with 
 The cluster runs the page as the image `stevetosak/tosak-net-site`: the static
 build behind unprivileged nginx on port 8080, as UID 10001 with a read-only
 root filesystem. CI builds and pushes it from `main` only, tagged `latest` and
-`alpha-<commit>`. To build and run it locally:
+`alpha-<commit>`, then opens a pull request on the infrastructure repository
+that sets the new tag in the site's overlay; Argo CD rolls the pod once it
+merges. To build and run it locally:
 
 ```sh
 docker build -f apps/site/Dockerfile -t tosak-net-site .

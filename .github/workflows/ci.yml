@@ -44,8 +44,7 @@ jobs:
           path: apps/site/playwright-report/
           retention-days: 7
 
-  # Only main ships. The deploy job comes with the project's overlay in
-  # cloud-infra: deploy-scope refuses a tag bump for an overlay it does not list.
+  # Only main ships.
   build-push:
     if: github.ref == 'refs/heads/main'
     needs: [gate, browser]
@@ -71,3 +70,19 @@ jobs:
             stevetosak/tosak-net-site:${{ steps.version.outputs.IMAGE_VERSION }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  # Opens deploy/tosak-net-site-<sha7> on cloud-infra, which changes only the
+  # overlay's newTag, and waits until deploy-scope lets it merge.
+  deploy:
+    needs: build-push
+    runs-on: ubuntu-24.04
+    concurrency:
+      group: tag-bump-tosak-net-site
+      cancel-in-progress: false
+    steps:
+      - uses: stevetosak/hetzner-cloud-infra/.github/actions/tag-bump@master
+        with:
+          private-key: ${{ secrets.TAG_BUMP_APP_KEY }}
+          overlay-dir: projects/tosak-net/site/manifests/overlays/dev
+          image: stevetosak/tosak-net-site
+          tag: ${{ needs.build-push.outputs.IMAGE_VERSION }}
