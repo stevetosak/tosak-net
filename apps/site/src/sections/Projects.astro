@@ -1,6 +1,6 @@
 ---
 import { Container, Heading, TextLink } from '@tosak/design';
-import { dayMonth, numbers, percent } from '../numbers/index.ts';
+import { daysBetween, lastDays, numbers, percent } from '../numbers/index.ts';
 import styles from './Projects.module.css';
 
 const hostLinks: Readonly<Record<string, string>> = {
@@ -8,6 +8,11 @@ const hostLinks: Readonly<Record<string, string>> = {
   'authos-api.tosak.net': 'https://authos-api.tosak.net/.well-known/openid-configuration',
   'authos-demo.tosak.net': 'https://authos-demo.tosak.net/',
 };
+// The service reports every probed host; this card shows Authos' own, in this order.
+const { availability } = numbers;
+const authosHosts = Object.keys(hostLinks).flatMap((name) =>
+  availability.hosts.filter(({ host }) => host === name),
+);
 ---
 
 <Container as="section" id="projects" className={styles.section} aria-labelledby="projects-title">
@@ -22,7 +27,7 @@ const hostLinks: Readonly<Record<string, string>> = {
       <p>An OpenID Connect identity provider I wrote from scratch, with single sign-on.</p>
       <p class={styles.stack}>TypeScript, Kotlin</p>
       <dl class={styles.hosts}>
-        {numbers.hosts.map(({ host, passedPercent }) => (
+        {authosHosts.map(({ host, passedPercent }) => (
           <div>
             <dt>
               <a href={hostLinks[host] ?? `https://${host}/`}>{host}</a>
@@ -32,7 +37,8 @@ const hostLinks: Readonly<Record<string, string>> = {
         ))}
       </dl>
       <p class={styles.caption}>
-        Runs on tosak. Checks passed since {dayMonth(numbers.checks.since)}.
+        Runs on tosak. Checks passed over{' '}
+        {lastDays(daysBetween(availability.from, availability.to))}.
       </p>
       <TextLink href="https://github.com/stevetosak/authos" aria-label="Authos on GitHub">
         GitHub

@@ -68,9 +68,11 @@ function arc(dx: number, dy: number, lift: number, steps: number): Keyframe[] {
   });
 }
 
-/** The restore timer: the drill's real length, played over the copy's flight. */
+/** The restore timer: the drill's real restore time, played over the copy's flight. */
+const RESTORE_FALLBACK_SECONDS = 240;
 function drillTime(progress: number): string {
-  const seconds = Math.round(Math.min(1, Math.max(0, progress)) * numbers.drill.minutes * 60);
+  const total = numbers.drill.restoreSeconds ?? RESTORE_FALLBACK_SECONDS;
+  const seconds = Math.round(Math.min(1, Math.max(0, progress)) * total);
   return `${String(Math.floor(seconds / 60))}:${String(seconds % 60).padStart(2, '0')}`;
 }
 

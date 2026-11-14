@@ -1,14 +1,74 @@
 {
-  "measuredAt": "2026-11-08T10:48:00Z",
-  "checks": { "since": "2026-11-05", "total": 29643, "failed": 7 },
-  "applications": { "matchGit": 16, "total": 16 },
-  "releases": { "since": "2026-10-23", "count": 7 },
-  "decisions": 14,
-  "drill": { "ranAt": "2026-11-01", "passed": true, "minutes": 4, "next": "2026-12-01" },
-  "rehearsedAt": "2026-10-25",
-  "hosts": [
-    { "host": "authos.tosak.net", "passedPercent": 100 },
-    { "host": "authos-api.tosak.net", "passedPercent": 99.95 },
-    { "host": "authos-demo.tosak.net", "passedPercent": 99.87 }
-  ]
+  "availability": {
+    "measuredAt": "2026-11-14T13:14:53Z",
+    "from": "2026-11-11T13:14:53Z",
+    "to": "2026-11-14T13:14:53Z",
+    "checks": 34561,
+    "failed": 5,
+    "hosts": [
+      {
+        "host": "argocd.tosak.net",
+        "checks": 4320,
+        "failed": 0,
+        "passedPercent": 100.0
+      },
+      {
+        "host": "authos-api.tosak.net",
+        "checks": 4320,
+        "failed": 0,
+        "passedPercent": 100.0
+      },
+      {
+        "host": "authos-demo.tosak.net",
+        "checks": 4320,
+        "failed": 0,
+        "passedPercent": 100.0
+      },
+      {
+        "host": "authos.tosak.net",
+        "checks": 4320,
+        "failed": 0,
+        "passedPercent": 100.0
+      },
+      {
+        "host": "doma.tosak.net",
+        "checks": 4320,
+        "failed": 0,
+        "passedPercent": 100.0
+      },
+      {
+        "host": "grafana.tosak.net",
+        "checks": 4320,
+        "failed": 0,
+        "passedPercent": 100.0
+      },
+      {
+        "host": "tosak.net",
+        "checks": 4321,
+        "failed": 5,
+        "passedPercent": 99.88
+      },
+      {
+        "host": "www.tosak.net",
+        "checks": 4320,
+        "failed": 0,
+        "passedPercent": 100.0
+      }
+    ]
+  },
+  "offsiteCopy": {
+    "measuredAt": "2026-11-14T13:14:53Z",
+    "from": "2026-11-11T13:14:53Z",
+    "to": "2026-11-14T13:14:53Z",
+    "maxLagSeconds": 301,
+    "failedUploads": 0
+  },
+  "drill": {
+    "measuredAt": "2026-11-14T13:26:26Z",
+    "finishedAt": "2026-11-01T09:03:54Z",
+    "passed": true,
+    "restoreSeconds": 197,
+    "databases": 2,
+    "next": "2026-12-01"
+  }
 }

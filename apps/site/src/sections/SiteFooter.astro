@@ -1,7 +1,7 @@
 ---
 import { Container } from '@tosak/design';
 import { docs, github, linkedin } from '../links.ts';
-import { instant, numbers } from '../numbers/index.ts';
+import { instant, numbers, oldestMeasuredAt } from '../numbers/index.ts';
 import styles from './SiteFooter.module.css';
 ---
 
@@ -25,6 +25,6 @@ import styles from './SiteFooter.module.css';
         <a href={linkedin}>LinkedIn</a>
       </li>
     </ul>
-    <p class={styles.measured}>Numbers measured on {instant(numbers.measuredAt)}.</p>
+    <p class={styles.measured}>Numbers measured on {instant(oldestMeasuredAt(numbers))}.</p>
   </div>
 </Container>
